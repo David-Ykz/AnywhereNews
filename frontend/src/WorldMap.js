@@ -20,13 +20,14 @@ const WorldMap = () => {
                 } else {
                     console.log(data.address.country);
                     country = data.address.country;
+                    getNewsForCountry(country);
                 }
             });
         return country;
     }
 
     function getNewsForCountry(country) {
-        axios.get('http://localhost:8000/api/world/')
+        axios.post('http://localhost:8000/api/world/', {'countryName': country.toString()})
             .then(response => {
                 console.log(response.data.message);
             })
@@ -48,8 +49,7 @@ const WorldMap = () => {
         mapRef.current.on('click', function (e) {
             const latlng = e.latlng;
             console.log('Clicked at:', latlng.lat, latlng.lng);
-            const country = getCountryFromLatLng(latlng);
-            getNewsForCountry(country);
+            getCountryFromLatLng(latlng);
         });
 
         return () => {
@@ -61,7 +61,8 @@ const WorldMap = () => {
     }, []); // useEffect runs only once on mount
 
     return (
-        <div id="map" style={{ height: '500px' }}></div>
+        // eslint-disable-next-line no-restricted-globals
+        <div id="map" style={{ height: screen.height }}></div>
     );
 };
 
