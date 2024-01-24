@@ -7,7 +7,7 @@ const WorldMap = () => {
     const mapRef = useRef(null);
 
     function getCountryFromLatLng(latlng) {
-        var country = "error";
+        let country = "error";
         const api_key = process.env.REACT_APP_API_KEY;
         const url = "https://geocode.maps.co/reverse?lat=" + latlng.lat + "&lon=" + latlng.lng + "&api_key=" + api_key;
         fetch(url)
@@ -27,7 +27,8 @@ const WorldMap = () => {
     }
 
     function getNewsForCountry(country) {
-        axios.post('http://localhost:9600/countryNews', {'countryName': country.toString()})
+        const url = 'http://localhost:9600/country-news';
+        axios.post(url, {'countryName': country.toString()})
             .then(response => {
                 console.log(response.data);
             })
