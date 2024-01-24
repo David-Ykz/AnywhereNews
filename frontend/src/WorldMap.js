@@ -27,9 +27,9 @@ const WorldMap = () => {
     }
 
     function getNewsForCountry(country) {
-        axios.post('http://localhost:8000/api/world/', {'countryName': country.toString()})
+        axios.post('http://localhost:9600/countryNews', {'countryName': country.toString()})
             .then(response => {
-                console.log(response.data.message);
+                console.log(response.data);
             })
             .catch(error => {
                 console.log("Encountered Error Fetching News: ")

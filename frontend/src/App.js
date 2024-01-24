@@ -2,6 +2,7 @@ import WorldMap from "./WorldMap";
 import {Button, Container, Nav, Navbar} from "react-bootstrap";
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import HelloWorld from "./HelloWorld";
+import FinanceNews from "./FinanceNews";
 
 const navTextStyle = {
     fontFamily: "Segoe UI",
@@ -27,6 +28,7 @@ function App() {
             <Routes>
                 <Route exact path="/" element={<HelloWorld></HelloWorld>}></Route>
                 <Route path="/world-map" element={<WorldMap></WorldMap>}></Route>
+                <Route path="/finance-news" element={<FinanceNews></FinanceNews>}></Route>
             </Routes>
         </Router>
     );
