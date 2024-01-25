@@ -1,6 +1,10 @@
+require('dotenv').config();
 const express = require("express");
 const cors = require("cors");
+const axios = require("axios").default;
 const request = require("request");
+const apiRequest = require("request");
+
 const app = express();
 
 app.use(cors());
@@ -19,7 +23,21 @@ function getFinancialNews() {
 
 app.post("/country-news", (request, response) => {
     console.log(request.body.countryName);
-    response.send("Responded with: " + request.body.countryName);
+    var options = {
+        method: 'GET',
+        url: 'https://api.newscatcherapi.com/v2/search',
+        params: {q: '*', lang: 'en', countries: 'US'},
+        headers: {
+            'x-api-key': process.env.NEWSCATCHER_API_KEY
+        }
+    };
+
+    axios.request(options).then(function (apiResponse) {
+        console.log(apiResponse.data);
+        response.send(apiResponse.data);
+    }).catch(function (error) {
+        console.error(error);
+    });
 })
 
 app.get("/financial-news", (request, response) => {
