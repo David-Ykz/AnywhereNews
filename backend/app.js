@@ -27,8 +27,8 @@ app.get("/financial-news", (request, response) => {
     'use strict';
     const apiRequest = require('request');
     const baseUrl = "https://www.alphavantage.co/query?function=NEWS_SENTIMENT";
-//    const url = baseUrl + "&apikey=" + process.env.ALPHA_VANTAGE_API_KEY;
-    const url = "https://www.alphavantage.co/query?function=NEWS_SENTIMENT&tickers=AAPL&apikey=demo";
+    const url = baseUrl + "&apikey=" + process.env.ALPHA_VANTAGE_API_KEY;
+//    const url = "https://www.alphavantage.co/query?function=NEWS_SENTIMENT&tickers=AAPL&apikey=demo";
     apiRequest.get({
         url: url,
         json: true,

@@ -2,6 +2,43 @@ import axios from "axios";
 import {useEffect, useState} from "react";
 
 function FinanceNews() {
+    const headerStyle = {
+        textAlign: 'center',
+        color: 'black',
+        fontSize: '2em',
+    }
+    const articleStyle = {
+        display: 'flex',
+        alignItems: 'center',
+        width: '90%',
+        margin: '0 auto',
+        borderBottom: '1px solid grey',
+        fontFamily: 'Times New Roman',
+    };
+    const imageStyle = {
+        width: '20%',
+        marginRight: '10px',
+        alignItems: 'flex-start',
+        padding: '10px'
+    };
+
+    const textContainerStyle = {
+        width: '110%',
+    };
+
+    const titleStyle = {
+        color: 'black',
+        fontSize: '1.1em',
+        textDecoration: 'none'
+    };
+
+    const summaryStyle = {
+        color: 'grey',
+    };
+
+
+
+
     const [newsData, setNewsData] = useState([]);
     const url = 'http://localhost:9600/financial-news';
     console.log("finance news");
@@ -18,53 +55,23 @@ function FinanceNews() {
             });
 
     }, []);
-    console.log(newsData);
 
     function processArticle(article) {
-
-        const articleStyle = {
-            display: 'flex',
-            alignItems: 'center',
-            width: '90%',
-            margin: '0 auto',
-            borderBottom: '1px solid grey',
-            padding: '10px',
-            fontFamily: 'Times New Roman',
-        };
-        const imageStyle = {
-            width: '10%',
-            marginRight: '10px',
-        };
-
-        const textContainerStyle = {
-            width: '80%',
-        };
-
-        const titleStyle = {
-            color: 'black',         // Set the desired color
-            fontSize: '1.2em',
-            marginBottom: '5px',
-            textDecoration: 'none', // Remove underline
-            display: 'inline-block', // Prevent the underline gap
-        };
-
-        const summaryStyle = {
-            color: 'grey',
-        };
-
-        if (article.banner_image === null) {
+        // Excluded because banner images take up too much space
+        // or there are too many results from that source
+        const excludedSources = ["Benzinga", "Motley Fool"];
+        if (article.banner_image === null || (excludedSources.indexOf(article.source) !== -1)) {
             return;
         }
         return (
             <div key={article.url} style={articleStyle}>
-                    <img src={article.banner_image} alt="Article" style={imageStyle} />
+                <img src={article.banner_image} alt="Article" style={imageStyle} />
                 <div style={textContainerStyle}>
-                    <h1 style={titleStyle}>
-                        <a href={article.url}>
-                            {article.title}
-                        </a>
-                    </h1>
-                    <p style={summaryStyle}>{article.summary}</p>
+                    <a style={titleStyle} href={article.url}>{article.title}</a>
+                    <p style={summaryStyle}>
+                        <div style={{ fontStyle: 'italic' }}>{article.authors[0]} | {article.source}</div>
+                        {article.summary}
+                    </p>
                 </div>
             </div>
         );
@@ -75,7 +82,7 @@ function FinanceNews() {
 
     return (
         <div>
-            Finance News
+            <h1 style={headerStyle}>Finance News</h1>
             {newsData.map(article => processArticle(article))}
         </div>
     )
