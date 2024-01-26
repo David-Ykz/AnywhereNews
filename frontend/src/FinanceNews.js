@@ -64,7 +64,7 @@ function FinanceNews() {
             return;
         }
         return (
-            <div key={article.url} style={articleStyle}>
+            <div style={articleStyle}>
                 <img src={article.banner_image} alt="Article" style={imageStyle} />
                 <div style={textContainerStyle}>
                     <a style={titleStyle} href={article.url}>{article.title}</a>
