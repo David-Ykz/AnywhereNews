@@ -3,9 +3,14 @@ export const headerStyle = {
     color: 'black',
     fontSize: '2em',
 }
-export const articleStyle = {
+export const AVArticleStyle = {
     display: 'flex',
-    alignItems: 'center',
+    width: '90%',
+    margin: '0 auto',
+    borderBottom: '1px solid grey',
+    fontFamily: 'Times New Roman',
+};
+export const NCArticleStyle = {
     width: '90%',
     margin: '0 auto',
     borderBottom: '1px solid grey',

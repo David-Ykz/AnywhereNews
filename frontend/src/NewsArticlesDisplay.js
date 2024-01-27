@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, {useEffect, useState} from "react";
-import {headerStyle, articleStyle, imageStyle, textContainerStyle, titleStyle, summaryStyle} from "./styles.js";
+import {headerStyle, AVArticleStyle, NCArticleStyle, imageStyle, textContainerStyle, titleStyle, summaryStyle} from "./styles.js";
 
 function processAVArticle(article) {
     // Excluded because banner images take up too much space
@@ -10,7 +10,7 @@ function processAVArticle(article) {
         return;
     }
     return (
-        <div style={articleStyle}>
+        <div style={AVArticleStyle}>
             <img src={article.banner_image} alt="Article" style={imageStyle} />
             <div style={textContainerStyle}>
                 <a style={titleStyle} href={article.url}>{article.title}</a>
@@ -24,11 +24,13 @@ function processAVArticle(article) {
 }
 
 function processNCArticle(article) {
+    const MAX_SUMMARY_LENGTH = 2000
+    if (article.summary.length > MAX_SUMMARY_LENGTH) {
+        return;
+    }
     return (
-        <div style={articleStyle}>
-            <h3>
-                <a href={article.link} style={titleStyle}>{article.title}</a>
-            </h3>
+        <div style={NCArticleStyle}>
+            <a href={article.link} style={titleStyle}>{article.title}</a>
             <p style={{ fontStyle: 'italic' }}>{article.author} | {article.published_date}</p>
             <p style={summaryStyle}>{article.summary}</p>
         </div>

@@ -1,17 +1,13 @@
 import WorldMap from "./WorldMap";
-import {Button, Container, Nav, Navbar} from "react-bootstrap";
+import {Container, Nav, Navbar} from "react-bootstrap";
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import HelloWorld from "./HelloWorld";
-import FinanceNews from "./FinanceNews";
 import {DisplayFinanceNews, DisplayTechnologyNews, DisplaySportsNews, DisplayPoliticsNews} from "./NewsArticlesDisplay";
 
 const navTextStyle = {
     fontFamily: "Segoe UI",
     marginLeft: "10px"
 }
-
-
-
 
 function App() {
     return (
