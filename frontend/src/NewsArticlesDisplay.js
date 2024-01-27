@@ -37,6 +37,27 @@ function processNCArticle(article) {
     );
 }
 
+export function DisplayBreakingNews() {
+    const [newsData, setNewsData] = useState([]);
+    const url = 'http://localhost:9600/breaking-news';
+    useEffect(() => {
+        axios.get(url)
+            .then(response => {
+                console.log(response);
+                setNewsData(response.data);
+            })
+            .catch(error => {console.log(error);});
+    }, []);
+
+    return (
+        <div>
+            <h1 style={headerStyle}>Breaking News</h1>
+            {newsData.map(article => processNCArticle(article))}
+        </div>
+    )
+}
+
+
 export function DisplayFinanceNews() {
     const [newsData, setNewsData] = useState([]);
     const url = 'http://localhost:9600/financial-news';

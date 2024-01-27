@@ -2,7 +2,13 @@ import WorldMap from "./WorldMap";
 import {Container, Nav, Navbar} from "react-bootstrap";
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import HelloWorld from "./HelloWorld";
-import {DisplayFinanceNews, DisplayTechnologyNews, DisplaySportsNews, DisplayPoliticsNews} from "./NewsArticlesDisplay";
+import {
+    DisplayBreakingNews,
+    DisplayFinanceNews,
+    DisplayTechnologyNews,
+    DisplaySportsNews,
+    DisplayPoliticsNews
+} from "./NewsArticlesDisplay";
 
 const navTextStyle = {
     fontFamily: "Segoe UI",
@@ -25,12 +31,12 @@ function App() {
                 </Container>
             </Navbar>
             <Routes>
-                <Route exact path="/" element={<HelloWorld></HelloWorld>}></Route>
-                <Route path="/world-map" element={<WorldMap></WorldMap>}></Route>
-                <Route path="/finance" element={<DisplayFinanceNews/>}></Route>
-                <Route path="/technology" element={<DisplayTechnologyNews/>}></Route>
-                <Route path="/sports" element={<DisplaySportsNews/>}></Route>
-                <Route path="/politics" element={<DisplayPoliticsNews/>}></Route>
+                <Route exact path="/" element={<DisplayBreakingNews/>}/>
+                <Route path="/world-map" element={<WorldMap/>}/>
+                <Route path="/finance" element={<DisplayFinanceNews/>}/>
+                <Route path="/technology" element={<DisplayTechnologyNews/>}/>
+                <Route path="/sports" element={<DisplaySportsNews/>}/>
+                <Route path="/politics" element={<DisplayPoliticsNews/>}/>
             </Routes>
         </Router>
     );

@@ -167,8 +167,22 @@ const countryCodes = {
     Zimbabwe: "zw",
 };
 
-
-
+app.get("/breaking-news", (request, response) => {
+    var options = {
+        method: 'GET',
+        url: 'https://api.newscatcherapi.com/v2/latest_headlines',
+        params: {lang: 'en'},
+        headers: {
+            'x-api-key': process.env.NEWSCATCHER_API_KEY
+        }
+    };
+    axios.request(options).then(function (apiResponse) {
+        console.log(apiResponse.data.articles);
+        response.send(apiResponse.data.articles);
+    }).catch(function (error) {
+        console.error(error);
+    });
+})
 
 app.post("/country-news", (request, response) => {
     console.log(request.body.countryName);

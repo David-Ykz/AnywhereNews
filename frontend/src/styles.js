@@ -22,17 +22,14 @@ export const imageStyle = {
     alignItems: 'flex-start',
     padding: '10px'
 };
-
 export const textContainerStyle = {
     width: '110%',
 };
-
 export const titleStyle = {
     color: 'black',
     fontSize: '1.1em',
     textDecoration: 'none'
 };
-
 export const summaryStyle = {
     color: 'grey',
 };

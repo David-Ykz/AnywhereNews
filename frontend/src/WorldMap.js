@@ -23,7 +23,32 @@ const WorldMap = () => {
         fontSize: '0.8em',
         textDecoration: 'none'
     };
-
+    const cardStyle = {
+        position: 'fixed',
+        top: '56px',
+        right: 0,
+        height: 'calc(100% - 56px)',
+        width: '40%',
+        backgroundColor: 'rgba(255, 255, 255, 0.6)',
+        zIndex: 1000,
+        overflowY: 'auto',
+        padding: '20px',
+    };
+    const closeButtonStyle = {
+        position: 'absolute',
+        top: '10px',
+        right: '10px',
+    };
+    const infoTipStyle = {
+        position: 'fixed',
+        top: '86%',
+        left: '2%',
+        width: '20%',
+        height: '10%',
+        backgroundColor: 'rgba(255, 255, 255, 0.6)',
+        zIndex: 1000,
+        padding: '5px',
+    }
 
 
     function getCountryFromLatLng(latlng) {
@@ -105,6 +130,8 @@ const WorldMap = () => {
             {/* eslint-disable-next-line no-restricted-globals */}
             <div id="map" style={{ height: screen.height }}></div>
 
+            <div style={infoTipStyle}>Click on any country to explore the news happening there</div>
+
             <div style={showNewsCard ? cardStyle : { display: 'none' }}>
                 <Button variant="outline-dark" style={closeButtonStyle} onClick={handleCloseNewsCard}>
                     X
@@ -116,25 +143,6 @@ const WorldMap = () => {
             </div>
         </div>
     );
-};
-
-const cardStyle = {
-    position: 'fixed',
-    top: '56px', // Adjust this value based on your header height
-    right: 0,
-    height: 'calc(100% - 56px)', // Adjust the height accordingly
-    width: '40%',
-    backgroundColor: 'rgba(255, 255, 255, 0.6)', // Slightly transparent white background
-    zIndex: 1000,
-    overflowY: 'auto',
-    padding: '20px',
-};
-
-
-const closeButtonStyle = {
-    position: 'absolute',
-    top: '10px',
-    right: '10px',
 };
 
 export default WorldMap;
