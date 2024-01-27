@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, {useEffect, useState} from "react";
-import {headerStyle, articleStyle, imageStyle, textContainerStyle, titleStyle, summaryStyle} from "styles.js";
+import {headerStyle, articleStyle, imageStyle, textContainerStyle, titleStyle, summaryStyle} from "./styles.js";
 
 function processAVArticle(article) {
     // Excluded because banner images take up too much space
@@ -30,6 +30,7 @@ function processNCArticle(article) {
                 <a href={article.link} style={titleStyle}>{article.title}</a>
             </h3>
             <p style={{ fontStyle: 'italic' }}>{article.author} | {article.published_date}</p>
+            <p style={summaryStyle}>{article.summary}</p>
         </div>
     );
 }

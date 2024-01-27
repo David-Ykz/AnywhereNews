@@ -10,15 +10,6 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-function getCountryNews(countryName) {
-
-}
-function getBreakingNews() {
-
-}
-function getFinancialNews() {
-}
-
 
 
 app.post("/country-news", (request, response) => {
@@ -58,30 +49,60 @@ app.get("/financial-news", (request, response) => {
     }).catch(function (error) {
         console.error(error);
     });
+})
 
+app.get("/technology-news", (request, response) => {
+    var options = {
+        method: 'GET',
+        url: 'https://www.alphavantage.co/query?',
+        params: {
+            function: 'NEWS_SENTIMENT',
+            topics: 'technology',
+            apikey: process.env.ALPHA_VANTAGE_API_KEY
+        }
+    };
 
+    axios.request(options).then(function (apiResponse) {
+        console.log(apiResponse.data);
+        console.log(apiResponse.data.feed);
+        response.send(apiResponse.data.feed);
+    }).catch(function (error) {
+        console.error(error);
+    });
+})
 
-    console.log("Financial News");
-//     'use strict';
-//     const apiRequest = require('request');
-//     const baseUrl = "https://www.alphavantage.co/query?function=NEWS_SENTIMENT";
-//     const url = baseUrl + "&apikey=" + process.env.ALPHA_VANTAGE_API_KEY;
-// //    const url = "https://www.alphavantage.co/query?function=NEWS_SENTIMENT&tickers=AAPL&apikey=demo";
-//     apiRequest.get({
-//         url: 'https://www.alphavantage.co/query?',
-//         function: 'NEWS_SENTIMENT',
-//         topics: 'earnings,economy_fiscal,economy_monetary,economy_macro,finance',
-//         apikey: process.env.ALPHA_VANTAGE_API_KEY
-//     }, (err, res, data) => {
-//         if (err) {
-//             console.log('Error:', err);
-//         } else if (res.statusCode !== 200) {
-//             console.log('Status:', res.statusCode);
-//         } else {
-//             console.log(data.feed);
-//             response.send(data.feed);
-//         }
-//     });
+app.get("/sports-news", (request, response) => {
+    var options = {
+        method: 'GET',
+        url: 'https://api.newscatcherapi.com/v2/search',
+        params: {q: '*', lang: 'en', topic: 'sport'},
+        headers: {
+            'x-api-key': process.env.NEWSCATCHER_API_KEY
+        }
+    };
+    axios.request(options).then(function (apiResponse) {
+        console.log(apiResponse.data.articles);
+        response.send(apiResponse.data.articles);
+    }).catch(function (error) {
+        console.error(error);
+    });
+})
+
+app.get("/politics-news", (request, response) => {
+    var options = {
+        method: 'GET',
+        url: 'https://api.newscatcherapi.com/v2/search',
+        params: {q: '*', lang: 'en', topic: 'politics'},
+        headers: {
+            'x-api-key': process.env.NEWSCATCHER_API_KEY
+        }
+    };
+    axios.request(options).then(function (apiResponse) {
+        console.log(apiResponse.data.articles);
+        response.send(apiResponse.data.articles);
+    }).catch(function (error) {
+        console.error(error);
+    });
 })
 
 

@@ -21,8 +21,8 @@ function App() {
                     <Navbar.Brand href="/">AnywhereNews</Navbar.Brand>
                     <Nav className="me-auto">
                         <Nav.Link href="/world-map" style={navTextStyle}>Map</Nav.Link>
-                        <Nav.Link href="/technology" style={navTextStyle}>Technology</Nav.Link>
                         <Nav.Link href="/finance" style={navTextStyle}>Finance</Nav.Link>
+                        <Nav.Link href="/technology" style={navTextStyle}>Technology</Nav.Link>
                         <Nav.Link href="/sports" style={navTextStyle}>Sports</Nav.Link>
                         <Nav.Link href="/politics" style={navTextStyle}>Politics</Nav.Link>
                     </Nav>
