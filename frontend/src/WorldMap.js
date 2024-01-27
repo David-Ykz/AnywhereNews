@@ -110,7 +110,7 @@ const WorldMap = () => {
                     X
                 </Button>
                 <Container style={{ paddingTop: '50px' }}>
-                    <h2 className="mt-3">Finance News</h2>
+                    <h2 className="mt-3">Country News</h2>
                     {newsData.map((article) => processArticle(article))}
                 </Container>
             </div>
