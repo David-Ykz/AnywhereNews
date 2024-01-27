@@ -41,7 +41,6 @@ app.post("/country-news", (request, response) => {
 })
 
 app.get("/financial-news", (request, response) => {
-
     var options = {
         method: 'GET',
         url: 'https://www.alphavantage.co/query?',

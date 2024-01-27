@@ -1,10 +1,10 @@
 import axios from "axios";
 import {useEffect, useState} from "react";
 
-function FinanceNews() {
+export function TechnologyNews() {
     const [newsData, setNewsData] = useState([]);
-    const url = 'http://localhost:9600/financial-news';
-    console.log("finance news");
+    const url = 'http://localhost:9600/technology-news';
+    console.log("technology news");
     console.log(newsData);
     useEffect(() => {
         axios.get(url)
